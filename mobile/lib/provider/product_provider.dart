@@ -9,7 +9,7 @@ class ProductProvider extends ChangeNotifier {
   List<ProductModel> listCart = [];
   void getList() async {
     //lay ds san pham tu FakeStoreAPI
-    String urlAPI = 'https://fakestoreapi.com/products';
+    String urlAPI = 'http://localhost:3000/products';
     var client = http.Client();
     var rs = await client.get(Uri.parse(urlAPI));
     var jsonString = rs.body;
@@ -23,7 +23,7 @@ class ProductProvider extends ChangeNotifier {
         price: e['price'],
         description: e['description'],
         category: e['category'],
-        image: e['image'],
+        image: e['imageUrl'],
       );
     }).toList();
 

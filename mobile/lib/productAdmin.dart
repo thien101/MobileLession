@@ -2,9 +2,10 @@ import 'dart:html';
 import 'dart:math';
 
 import 'package:badges/badges.dart';
+import 'package:mobile/AddProduct.dart';
 import 'package:mobile/DetailCart.dart';
 import 'package:mobile/DetailProduct.dart';
-import 'package:mobile/FormMain.dart';
+import 'package:mobile/DetailProductAdmin.dart';
 import 'package:mobile/InforUser.dart';
 import 'package:mobile/model/product_model.dart';
 import 'package:mobile/model/user.dart';
@@ -13,16 +14,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
-class ProductModels extends StatelessWidget {
-  final UserModel? user;
-  ProductModels({super.key, required this.user});
+class ProductAdmins extends StatelessWidget {
+  ProductAdmins({super.key});
   //late List<ProductModel> _list = [];
   bool showGrid = true;
   bool isMax = false;
   bool isMin = false;
   String category = "";
   var SearchController = TextEditingController();
-  final List<ProductModel> listCart = [];
+
   @override
   Widget build(BuildContext context) {
     var productProvider = Provider.of<ProductProvider>(context);
@@ -63,8 +63,7 @@ class ProductModels extends StatelessWidget {
           children: [
             IconButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => (option()))));
+                  Navigator.pop(context);
                 },
                 icon: Icon(
                   Icons.arrow_back,
@@ -78,13 +77,7 @@ class ProductModels extends StatelessWidget {
               ),
             ),
             IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) =>
-                              (InforUser(userInfor: user)))));
-                },
+                onPressed: () {},
                 icon: Icon(
                   Icons.account_circle,
                   size: 40,
@@ -204,19 +197,15 @@ class ProductModels extends StatelessWidget {
           },
           child: const Text('ALL'),
         ),
-        Badge(
-          badgeContent: Text('${productProvider.listCart.length}'),
+        SizedBox(
           child: IconButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => (AddCart(
-                              listCart: productProvider.listCart,
-                              user: user,
-                            )))));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => (ADDProducts()))));
               },
-              icon: const Icon(Icons.add_shopping_cart)),
+              icon: Icon(
+                Icons.add,
+              )),
         )
       ],
     );
@@ -274,9 +263,9 @@ class ProductModels extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => (DetailProduct(
+                              builder: ((context) => (DetailProductAdmins(
                                     obj: e,
-                                    user: user,
+                                    user: null,
                                   )))));
                     },
                     child: Text(
@@ -302,16 +291,16 @@ class ProductModels extends StatelessWidget {
                   ),
                   TextButton(
                       onPressed: () {
-                        productProvider.getListCart(e);
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: ((context) => (AddCart(
-                        //               listCart: productProvider.listCart,
-                        //               user: user,
-                        //             )))));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => (DetailProductAdmins(
+                                      obj: e,
+                                      user: null,
+                                    )))));
                       },
-                      child: Text('ADD', style: TextStyle(fontSize: 14)))
+                      child:
+                          Text('Xem Chi Tiet', style: TextStyle(fontSize: 14)))
                 ],
               ),
             ),
@@ -374,7 +363,7 @@ class ProductModels extends StatelessWidget {
                           MaterialPageRoute(
                               builder: ((context) => (DetailProduct(
                                     obj: e,
-                                    user: user,
+                                    user: null,
                                   )))));
                     },
                     child: Text(
@@ -398,16 +387,16 @@ class ProductModels extends StatelessWidget {
                   ),
                   TextButton(
                       onPressed: () {
-                        productProvider.getListCart(e);
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: ((context) => (AddCart(
-                        //               listCart: productProvider.listCart,
-                        //               user: user,
-                        //             )))));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => (DetailProduct(
+                                      obj: e,
+                                      user: null,
+                                    )))));
                       },
-                      child: Text('ADD', style: TextStyle(fontSize: 14)))
+                      child:
+                          Text('Xem chi tiet', style: TextStyle(fontSize: 14)))
                 ],
               ),
             ),

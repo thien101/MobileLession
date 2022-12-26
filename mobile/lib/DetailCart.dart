@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import 'model/user.dart';
+
 class AddCart extends StatefulWidget {
   final List<ProductModel> listCart;
-  const AddCart({
-    super.key,
-    required this.listCart,
-  });
+  final UserModel? user;
+  AddCart({super.key, required this.listCart, required this.user});
 
   @override
-  State<AddCart> createState() => _AddCartState();
+  State<AddCart> createState() => _AddCartState(user);
 }
 
 class _AddCartState extends State<AddCart> {
+  final UserModel? userInfor;
+  _AddCartState(this.userInfor);
   @override
   Widget build(BuildContext context) {
     double tt = 0;
@@ -42,7 +44,9 @@ class _AddCartState extends State<AddCart> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => (ProductModels()))));
+                                  builder: ((context) => (ProductModels(
+                                        user: userInfor,
+                                      )))));
                         },
                         icon: Icon(Icons.arrow_back),
                       )
@@ -89,8 +93,9 @@ class _AddCartState extends State<AddCart> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: ((context) =>
-                                          (ProductModels()))));
+                                      builder: ((context) => (ProductModels(
+                                            user: userInfor,
+                                          )))));
                             },
                             child: const Text(
                               "Check Out",

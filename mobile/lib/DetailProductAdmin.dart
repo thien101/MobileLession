@@ -10,10 +10,10 @@ import 'package:mobile/model/product_model.dart';
 
 import 'model/user.dart';
 
-class DetailProduct extends StatelessWidget {
+class DetailProductAdmins extends StatelessWidget {
   final ProductModel obj;
   final UserModel? user;
-  DetailProduct({super.key, required this.obj, required this.user});
+  DetailProductAdmins({super.key, required this.obj, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -76,15 +76,10 @@ class DetailProduct extends StatelessWidget {
                             //     MaterialPageRoute(
                             //         builder: ((context) => (AddCart(
                             //             listCart: productProvider.listCart)))));
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) => (ProductModels(
-                                          user: user,
-                                        )))));
+                            Navigator.pop(context);
                           },
                           child: const Text(
-                            "Add to Cart",
+                            "Back",
                             style: TextStyle(fontSize: 20, color: Colors.white),
                           )),
                     ),
